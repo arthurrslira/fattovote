@@ -105,5 +105,5 @@ st.sidebar.title('Sobre')
 st.sidebar.info('Dashboard da Fatto Inteligência Política sobre votações nominais na Câmara dos Deputados. Acesso restrito para clientes.')
 
 # Adicionando a logo
-logo = "fatto_marca.png"
+logo = "marca_fatto.png"
 st.sidebar.image(logo, use_column_width=True)
