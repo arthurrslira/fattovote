@@ -13,7 +13,7 @@ st.sidebar.image(imagem, use_column_width=False, width=300)
 st.header("📝 Sobre")
 
 texto = """
-    <p style="text-align: justify;">Dashboard da <strong>Fatto Inteligência Política</strong> sobre votações nominais na Câmara dos Deputados. Acesso restrito para clientes."
+    <p style="text-align: justify;">Dashboard da <strong>Fatto Inteligência Política</strong> sobre votações nominais na Câmara dos Deputados. Acesso restrito para clientes.
     </p>
     """
 
