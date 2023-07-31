@@ -2,7 +2,7 @@ import streamlit as st
 
 st.set_page_config(
      page_title="FattoVote - Contato",
-     page_icon="📞",
+     page_icon="https://i.ibb.co/x1Y9wJh/Monograma-Verde.png",
      layout="wide",
      initial_sidebar_state="expanded",
 )
