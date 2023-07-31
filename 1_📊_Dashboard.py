@@ -12,7 +12,7 @@ def obter_url_imagem(nome_parlamentar):
         return 'https://www.camara.leg.br/tema/assets/images/foto-deputado-sem-foto-peq.png'
 
 st.set_page_config(
-     page_title="CamVote",
+     page_title="FattoVote",
      page_icon="🏠",
      layout="wide",
      initial_sidebar_state="expanded",
@@ -23,7 +23,7 @@ parlamentares = sorted(df['Votação', 'Parlamentar'].unique())
 partidos_unicos = sorted(df['Unnamed: 0_level_0', 'Partido'].unique())
 
 imagem = "marca_fatto.png"
-st.sidebar.image(imagem, use_column_width=False, width=200)
+st.sidebar.image(imagem, use_column_width=False, width=300)
 
 st.markdown(
 "<h2 style='text-align: center; background-color: #307c5c; color: white; padding: 16px;'>Votações Nominais na Câmara dos Deputados - 2023</h2>",
