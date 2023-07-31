@@ -1,13 +1,13 @@
 import streamlit as st
 
 st.set_page_config(
-     page_title="CamVote - Contato",
+     page_title="FattoVote - Contato",
      page_icon="📞",
      layout="wide",
      initial_sidebar_state="expanded",
 )
 
-imagem = "marca_cesar_school.png"
+imagem = "marca_fatto.png"
 st.sidebar.image(imagem, use_column_width=False, width=100)
 
 st.header("📞 Contato")
