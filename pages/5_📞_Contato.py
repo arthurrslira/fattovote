@@ -8,7 +8,7 @@ st.set_page_config(
 )
 
 imagem = "marca_fatto.png"
-st.sidebar.image(imagem, use_column_width=False, width=100)
+st.sidebar.image(imagem, use_column_width=False, width=300)
 
 st.header("📞 Contato")
 
