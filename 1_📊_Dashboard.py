@@ -13,7 +13,7 @@ def obter_url_imagem(nome_parlamentar):
 
 st.set_page_config(
      page_title="FattoVote",
-     page_icon="🏠",
+     page_icon="https://i.ibb.co/x1Y9wJh/Monograma-Verde.png",
      layout="wide",
      initial_sidebar_state="expanded",
 )
