@@ -2,6 +2,15 @@ import streamlit as st
 import pandas as pd
 import altair as alt
 
+df_img = pd.read_excel('senadores_imagens.xlsx')
+
+def obter_url_imagem(nome_parlamentar):
+    senador_filtrado = df_img[df_img['Nome do Senador'] == nome_parlamentar]
+    if not senador_filtrado.empty:
+        return senador_filtrado['Link da Imagem'].iloc[0]
+    else:
+        return 'https://www.camara.leg.br/tema/assets/images/foto-deputado-sem-foto-peq.png'
+
 st.set_page_config(
      page_title="FattoVote",
      page_icon="https://i.ibb.co/x1Y9wJh/Monograma-Verde.png",
@@ -74,9 +83,16 @@ if not parlamentar_selecionado:
 
 df_filtrado.columns = ["Partido", "Parlamentar", "UF", "Voto"]
 
+df_filtrado["Imagem"] = df_filtrado["Parlamentar"].apply(obter_url_imagem)
+df_filtrado = df_filtrado[["Imagem", "Parlamentar", "Partido", "UF", "Voto"]]
 st.markdown(projeto_selecionado)
-st.dataframe(df_filtrado,
-                hide_index=True,
+
+st.dataframe(
+    df_filtrado,
+    column_config={
+        "Imagem": st.column_config.ImageColumn(label="", width=20)
+    },
+    hide_index=True,
     width=800
 )
 
