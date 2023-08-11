@@ -8,6 +8,10 @@ credentials:
       email: arthurrslira@gmail.com
       name: Arthur Lira
       password: $2b$12$dH8MwzLNMMRdONY9c.jj1OGi6pwRmVUwa48TXnEKsl4Yoizzc64G6
+    arthurrslira:
+      email: arthurrslira@gmail.com
+      name: Arthur Santos Lira
+      password: $2b$12$Mtn6okKHL488eDq7WT3qYOoQmtN.yXNJW9ROtvPhcUYpRReZq.SYO
     bernardo.livramento:
       email: bernardo@fattopolitica.com.br
       name: Bernardo Livramento
@@ -32,10 +36,10 @@ preauthorized:
   emails:
   - thigsbuarque@gmail.com
   - eduardamsrques@gmail.com
-  - arthurrslira@gmail.com
   - arthur@favetti.adv.br
   - rafael@favetti.net
   - bernardo@fattopolitica.com.br
   - guilherme@fattopolitica.com.br
   - evelyn@fattopolitica.com.br
   - bruno@fattopolitica.com.br
+  - filipetorrespontes@gmail.com
