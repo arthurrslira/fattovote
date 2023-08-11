@@ -1,0 +1,41 @@
+cookie:
+  expiry_days: 0
+  key: some_signature_key
+  name: some_cookie_name
+credentials:
+  usernames:
+    arthur.slira:
+      email: arthurrslira@gmail.com
+      name: Arthur Lira
+      password: $2b$12$dH8MwzLNMMRdONY9c.jj1OGi6pwRmVUwa48TXnEKsl4Yoizzc64G6
+    bernardo.livramento:
+      email: bernardo@fattopolitica.com.br
+      name: Bernardo Livramento
+      password: $2b$12$zlRSl0b0NYboiihSJcA7guJQw8cxAuE7hDrBtVAOEg/XllDHEOycu
+    bruno.rizzi:
+      email: bruno@fattopolitica.com.br
+      name: Bruno Rizzi
+      password: $2b$12$vLwOyUaX101k3QwM7ASBAubX8ADpNj09uOhHdy2elNuzdBUJeZI2G
+    evelyn.apolinaria:
+      email: evelyn@fattopolitica.com.br
+      name: Evelyn Apolinaria
+      password: $2b$12$o5pSe8tY1qkrumXfRkOIyuYipoy4ImgMZNesai2eAjdLqUqXySq9a
+    guilherme.favetti:
+      email: guilherme@fattopolitica.com.br
+      name: Guilherme Favetti
+      password: $2b$12$ut1yfyp/D4Xf1OyIcgSEbObam6AijeaItzpv8qG7x5/8rZRzzFSyS
+    rafael.favetti:
+      email: rafael@favetti.net
+      name: Rafael Favetti
+      password: $2b$12$vQpNyFj9v3gums4hRnkCtOhYPa49CgGteI87ZNrICYE8iAAqEro7.
+preauthorized:
+  emails:
+  - thigsbuarque@gmail.com
+  - eduardamsrques@gmail.com
+  - arthurrslira@gmail.com
+  - arthur@favetti.adv.br
+  - rafael@favetti.net
+  - bernardo@fattopolitica.com.br
+  - guilherme@fattopolitica.com.br
+  - evelyn@fattopolitica.com.br
+  - bruno@fattopolitica.com.br
