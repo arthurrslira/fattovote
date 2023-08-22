@@ -46,7 +46,9 @@ if authentication_status:
         Através do dashboard e dos gráficos que podem ser gerados a partir dos filtros, podemos perceber uma distribuição partidária bem interessante:\n
         1) A pauta econômica (reforma tributária, arcabouço fiscal) recebeu apoio dos partidos de centro e centro-direita, como PP, PSD, Republicanos e União Brasil; \n
         2) No entanto, o marco temporal das terras indígenas dividiu a Câmara entre direita e esquerda e mesmo partidos com ministérios no governo Lula votaram a favor do projeto, o qual o governo se posicionou contra;\n
-        3) Entre os partidos com ministérios no governo, o PSOL, partido mais à esquerda com representação parlamentar, foi o que proporcionalmente menos apoiou a reforma tributária.
+        3) Entre os partidos com ministérios no governo, o PSOL, partido mais à esquerda com representação parlamentar, foi o que proporcionalmente menos apoiou a reforma tributária.\n
+
+        P.S.: Neste momento, é equivocado atribuir a partidos como PP e Republicanos a etiqueta de 'governo' por conta do percentual de suas votações favoráveis aos projetos do Executivo — ainda mais se tratando apenas de votações em Plenário. Esses partidos estão em processo de negociação para entrada oficial no governo, mas até aqui se comportam como partidos independentes. A métrica de votos é importante, mas não suficiente para analisar todo o processo.
         </p>
         """
         
