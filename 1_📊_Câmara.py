@@ -53,7 +53,7 @@ if authentication_status:
 
     qrcode = "qrcode.png"
     st.sidebar.image(qrcode, use_column_width=False, width=300)
-    
+  
     st.markdown(
     "<h2 style='text-align: center; background-color: #307c5c; color: white; padding: 16px;'>Votações Nominais na Câmara dos Deputados - 2023</h2>",
     unsafe_allow_html=True
@@ -69,6 +69,7 @@ if authentication_status:
         ('Reforma Tributária - 1º Turno', '06/07/2023 21:00:48 - PEC  Nº 45/2019 - SUBSTITUTIVO OFERECIDO PELA COMISSÃO ESPECIAL'),
         ('Reforma Tributária - 2º Turno', '07/07/2023 01:17:05 - PEC  Nº 45/2019 - PROPOSTA DE EMENDA À CONSTITUIÇÃO - 2º TURNO'),
         ('Arcabouço Fiscal', '23/05/2023 23:12:45 - PLP  Nº 93/2023 - SUBSTITUTIVO OFERECIDO PELO RELATOR'),
+        ('Arcabouço Fiscal (Emendas vindas do Senado)', '22/08/2023 19:47:31 - PLP  Nº 93/2023 - EMENDAS COM PARECER PELA APROVAÇÃO'),
         ('Marco Temporal das Terras Indígenas', '30/05/2023 20:02:55 - PL   Nº 490/2007 - SUBEMENDA SUBSTITUTIVA'),
         ('MP dos Ministérios', '31/05/2023 22:43:56 - MPV  Nº 1154/2023 - PARECER DA C.M P/ ATEND. DOS PRESSUPOSTOS CONSTITUCIONAIS...'),
         ('Suspensão dos decretos de saneamento emitidos por Lula', '03/05/2023 20:37:16 - PDL  Nº 98/2023 - SUBSTITUTIVO OFERECIDO PELO RELATOR')
