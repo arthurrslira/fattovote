@@ -65,7 +65,8 @@ if authentication_status:
     projetos_principais = [
         ('Arcabouço Fiscal', 'PLP 93-2023'),
         ('MP dos Ministérios', 'MPV 1154-2023'),
-        ('Lei Geral do Esporte', 'PL 1825-2022')
+        ('Lei Geral do Esporte', 'PL 1825-2022'),
+        ('PL do Carf', 'PLP 2384-2023')
     ]
 
     primeiros_valores = [tupla[0] for tupla in projetos_principais]
