@@ -37,136 +37,137 @@ authenticator = stauth.Authenticate(
 
 # Página de Login
 
-name, authentication_status, username = authenticator.login('Login', 'main')
+#name, authentication_status, username = authenticator.login('Login', 'main')
 
-if authentication_status:
-    st.sidebar.write(f'Bem-vindo *{name}*')
-    authenticator.logout('Logout', 'sidebar')
+#if authentication_status:
+#st.sidebar.write(f'Bem-vindo *{name}*')
+#authenticator.logout('Logout', 'sidebar')
 
-    df = pd.read_excel('camara_deputados_votacoes_nominais_2023.xlsx', header=[0, 1])
-    parlamentares = sorted(df['Votação', 'Parlamentar'].unique())
-    partidos_unicos = sorted(df['Unnamed: 0_level_0', 'Partido'].unique())
+df = pd.read_excel('camara_deputados_votacoes_nominais_2023.xlsx', header=[0, 1])
+parlamentares = sorted(df['Votação', 'Parlamentar'].unique())
+partidos_unicos = sorted(df['Unnamed: 0_level_0', 'Partido'].unique())
 
 
-    imagem = "marca_fatto.png"
-    st.sidebar.image(imagem, use_column_width=False, width=300)
+imagem = "marca_fatto.png"
+st.sidebar.image(imagem, use_column_width=False, width=300)
 
-    qrcode = "qrcode.png"
-    st.sidebar.image(qrcode, use_column_width=False, width=300)
-  
-    st.markdown(
-    "<h2 style='text-align: center; background-color: #307c5c; color: white; padding: 16px;'>Votações Nominais na Câmara dos Deputados - 2023</h2>",
-    unsafe_allow_html=True
-    )
+qrcode = "qrcode.png"
+st.sidebar.image(qrcode, use_column_width=False, width=300)
 
-    projetos = df.columns.get_level_values(0)[2:].unique()
-    df_projetos = pd.DataFrame(projetos, columns=['projeto'])
+st.markdown(
+"<h2 style='text-align: center; background-color: #307c5c; color: white; padding: 16px;'>Votações Nominais na Câmara dos Deputados - 2023</h2>",
+unsafe_allow_html=True
+)
 
-    df_projetos['projeto_data'] = df_projetos['projeto'].apply(lambda x: x.split("-", 1)[0].strip())
-    df_projetos['projeto_nome'] = df_projetos['projeto'].apply(lambda x: x.split("-", 1)[1].strip())
+projetos = df.columns.get_level_values(0)[2:].unique()
+df_projetos = pd.DataFrame(projetos, columns=['projeto'])
 
-    projetos_principais = [
-        ('Reforma Tributária - 1º Turno', '06/07/2023 21:00:48 - PEC  Nº 45/2019 - SUBSTITUTIVO OFERECIDO PELA COMISSÃO ESPECIAL'),
-        ('Reforma Tributária - 2º Turno', '07/07/2023 01:17:05 - PEC  Nº 45/2019 - PROPOSTA DE EMENDA À CONSTITUIÇÃO - 2º TURNO'),
-        ('Arcabouço Fiscal', '23/05/2023 23:12:45 - PLP  Nº 93/2023 - SUBSTITUTIVO OFERECIDO PELO RELATOR'),
-        ('Arcabouço Fiscal (Emendas vindas do Senado)', '22/08/2023 19:47:31 - PLP  Nº 93/2023 - EMENDAS COM PARECER PELA APROVAÇÃO'),
-        ('Marco Temporal das Terras Indígenas', '30/05/2023 20:02:55 - PL   Nº 490/2007 - SUBEMENDA SUBSTITUTIVA'),
-        ('MP dos Ministérios', '31/05/2023 22:43:56 - MPV  Nº 1154/2023 - PARECER DA C.M P/ ATEND. DOS PRESSUPOSTOS CONSTITUCIONAIS...'),
-        ('Suspensão dos decretos de saneamento emitidos por Lula', '03/05/2023 20:37:16 - PDL  Nº 98/2023 - SUBSTITUTIVO OFERECIDO PELO RELATOR')
-    ]
+df_projetos['projeto_data'] = df_projetos['projeto'].apply(lambda x: x.split("-", 1)[0].strip())
+df_projetos['projeto_nome'] = df_projetos['projeto'].apply(lambda x: x.split("-", 1)[1].strip())
 
-    primeiros_valores = [tupla[0] for tupla in projetos_principais]
+projetos_principais = [
+    ('Reforma Tributária - 1º Turno', '06/07/2023 21:00:48 - PEC  Nº 45/2019 - SUBSTITUTIVO OFERECIDO PELA COMISSÃO ESPECIAL'),
+    ('Reforma Tributária - 2º Turno', '07/07/2023 01:17:05 - PEC  Nº 45/2019 - PROPOSTA DE EMENDA À CONSTITUIÇÃO - 2º TURNO'),
+    ('Arcabouço Fiscal', '23/05/2023 23:12:45 - PLP  Nº 93/2023 - SUBSTITUTIVO OFERECIDO PELO RELATOR'),
+    ('Arcabouço Fiscal (Emendas vindas do Senado)', '22/08/2023 19:47:31 - PLP  Nº 93/2023 - EMENDAS COM PARECER PELA APROVAÇÃO'),
+    ('Marco Temporal das Terras Indígenas', '30/05/2023 20:02:55 - PL   Nº 490/2007 - SUBEMENDA SUBSTITUTIVA'),
+    ('MP dos Ministérios', '31/05/2023 22:43:56 - MPV  Nº 1154/2023 - PARECER DA C.M P/ ATEND. DOS PRESSUPOSTOS CONSTITUCIONAIS...'),
+    ('Suspensão dos decretos de saneamento emitidos por Lula', '03/05/2023 20:37:16 - PDL  Nº 98/2023 - SUBSTITUTIVO OFERECIDO PELO RELATOR')
+]
 
-    st.subheader('Projeto:')
+primeiros_valores = [tupla[0] for tupla in projetos_principais]
 
-    projeto_selecionado2 = st.selectbox('Selecione o projeto', primeiros_valores)
+st.subheader('Projeto:')
 
-    st.subheader('Partidos:')
+projeto_selecionado2 = st.selectbox('Selecione o projeto', primeiros_valores)
 
-    if st.checkbox("Todos", value=True):
-        partidos_selecionados = partidos_unicos
-    else:
-        partidos_selecionados = st.multiselect('Selecione os partidos', partidos_unicos, default=partidos_unicos)
+st.subheader('Partidos:')
 
-    st.subheader('Parlamentares:')
+if st.checkbox("Todos", value=True):
+    partidos_selecionados = partidos_unicos
+else:
+    partidos_selecionados = st.multiselect('Selecione os partidos', partidos_unicos, default=partidos_unicos)
 
-    parlamentares_selecionados = df.loc[df[('Unnamed: 0_level_0', 'Partido')].isin(partidos_selecionados), ('Votação', 'Parlamentar')].unique()
-    selecionar_parlamentar = st.selectbox('Selecione um parlamentar', ['Todos'] + sorted(parlamentares_selecionados))
+st.subheader('Parlamentares:')
+
+parlamentares_selecionados = df.loc[df[('Unnamed: 0_level_0', 'Partido')].isin(partidos_selecionados), ('Votação', 'Parlamentar')].unique()
+selecionar_parlamentar = st.selectbox('Selecione um parlamentar', ['Todos'] + sorted(parlamentares_selecionados))
+parlamentar_selecionado = [selecionar_parlamentar]
+
+if selecionar_parlamentar == 'Todos':
+    parlamentar_selecionado = parlamentares
+else:
     parlamentar_selecionado = [selecionar_parlamentar]
 
-    if selecionar_parlamentar == 'Todos':
-        parlamentar_selecionado = parlamentares
-    else:
-        parlamentar_selecionado = [selecionar_parlamentar]
+for tupla in projetos_principais:
+    if tupla[0] == projeto_selecionado2:
+        projeto_selecionado = tupla[1]
+        break
 
-    for tupla in projetos_principais:
-        if tupla[0] == projeto_selecionado2:
-            projeto_selecionado = tupla[1]
-            break
+df2 = df[['Unnamed: 0_level_0', 'Votação', projeto_selecionado]]
 
-    df2 = df[['Unnamed: 0_level_0', 'Votação', projeto_selecionado]]
+df_filtrado = df2[
+    (df2[('Unnamed: 0_level_0', 'Partido')].isin(partidos_selecionados)) &
+    (df2[('Votação', 'Parlamentar')].isin(parlamentar_selecionado))
+]
 
-    df_filtrado = df2[
-        (df2[('Unnamed: 0_level_0', 'Partido')].isin(partidos_selecionados)) &
-        (df2[('Votação', 'Parlamentar')].isin(parlamentar_selecionado))
-    ]
+if not parlamentar_selecionado:
+    st.markdown("Nenhum parlamentar encontrado.")
 
-    if not parlamentar_selecionado:
-        st.markdown("Nenhum parlamentar encontrado.")
+df_filtrado.columns = ["Partido", "Parlamentar", "Voto", "Orientação"]
 
-    df_filtrado.columns = ["Partido", "Parlamentar", "Voto", "Orientação"]
+df_filtrado = df_filtrado[df_filtrado['Voto'] != '-']
 
-    df_filtrado = df_filtrado[df_filtrado['Voto'] != '-']
+df_filtrado["Imagem"] = df_filtrado["Parlamentar"].apply(obter_url_imagem)
+df_filtrado = df_filtrado[["Imagem", "Parlamentar", "Partido", "Voto", "Orientação"]]
+st.markdown(projeto_selecionado)
 
-    df_filtrado["Imagem"] = df_filtrado["Parlamentar"].apply(obter_url_imagem)
-    df_filtrado = df_filtrado[["Imagem", "Parlamentar", "Partido", "Voto", "Orientação"]]
-    st.markdown(projeto_selecionado)
+st.dataframe(
+    df_filtrado,
+    column_config={
+        "Imagem": st.column_config.ImageColumn(label="", width=20)
+    },
+    hide_index=True,
+    width=800
+)
 
-    st.dataframe(
-        df_filtrado,
-        column_config={
-            "Imagem": st.column_config.ImageColumn(label="", width=20)
-        },
-        hide_index=True,
-        width=800
-    )
+grouped_data = df_filtrado.groupby(["Partido", "Voto"]).size().unstack(fill_value=0)
 
-    grouped_data = df_filtrado.groupby(["Partido", "Voto"]).size().unstack(fill_value=0)
+party_sums = grouped_data.sum(axis=1)
+sorted_parties = party_sums.sort_values(ascending=False).index
 
-    party_sums = grouped_data.sum(axis=1)
-    sorted_parties = party_sums.sort_values(ascending=False).index
+sorted_data = grouped_data.loc[sorted_parties]
 
-    sorted_data = grouped_data.loc[sorted_parties]
+percentages = sorted_data.apply(lambda row: (row / row.sum())*100, axis=1).round(2)
 
-    percentages = sorted_data.apply(lambda row: (row / row.sum())*100, axis=1).round(2)
+df_long = percentages.reset_index().melt(id_vars='Partido', var_name='Voto', value_name='Percentual')
 
-    df_long = percentages.reset_index().melt(id_vars='Partido', var_name='Voto', value_name='Percentual')
+colors = alt.Scale(domain=['Sim', 'Não', 'Não votou', 'Abstenção'],
+                range=['#90EE90', '#FFA07A', '#D3D3D3', '#D2B48C'])
 
-    colors = alt.Scale(domain=['Sim', 'Não', 'Não votou', 'Abstenção'],
-                    range=['#90EE90', '#FFA07A', '#D3D3D3', '#D2B48C'])
+chart = alt.Chart(df_long).mark_bar().encode(
+    x='Partido',
+    y='Percentual',
+    color=alt.Color('Voto', scale=colors),
+    tooltip=['Partido', 'Voto', 'Percentual']
+).properties(
+    width=600,
+    height=400
+)
 
-    chart = alt.Chart(df_long).mark_bar().encode(
-        x='Partido',
-        y='Percentual',
-        color=alt.Color('Voto', scale=colors),
-        tooltip=['Partido', 'Voto', 'Percentual']
-    ).properties(
-        width=600,
-        height=400
-    )
+st.altair_chart(chart, use_container_width=True)
 
-    st.altair_chart(chart, use_container_width=True)
-elif authentication_status is False:
-    st.error('Username/senha está incorreta')
-elif authentication_status is None:
-    st.warning('Por favor insira seu nome de usuário e senha')
+#elif authentication_status is False:
+#    st.error('Username/senha está incorreta')
+#elif authentication_status is None:
+#    st.warning('Por favor insira seu nome de usuário e senha')
 
-    try:
-        if authenticator.register_user('Primeiro Login', preauthorization=True):
-            st.success('User registered successfully')
-    except Exception as e:
-        st.error(e)
+#    try:
+#        if authenticator.register_user('Primeiro Login', preauthorization=True):
+#            st.success('User registered successfully')
+ #   except Exception as e:
+#        st.error(e)
 
 # Saving config file
-with open('config.yaml', 'w') as file:
-    yaml.dump(config, file, default_flow_style=False)
+#with open('config.yaml', 'w') as file:
+#    yaml.dump(config, file, default_flow_style=False)
