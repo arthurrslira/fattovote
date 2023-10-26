@@ -72,7 +72,8 @@ projetos_principais = [
     ('Arcabouço Fiscal (Emendas vindas do Senado)', '22/08/2023 19:47:31 - PLP  Nº 93/2023 - EMENDAS COM PARECER PELA APROVAÇÃO'),
     ('Marco Temporal das Terras Indígenas', '30/05/2023 20:02:55 - PL   Nº 490/2007 - SUBEMENDA SUBSTITUTIVA'),
     ('MP dos Ministérios', '31/05/2023 22:43:56 - MPV  Nº 1154/2023 - PARECER DA C.M P/ ATEND. DOS PRESSUPOSTOS CONSTITUCIONAIS...'),
-    ('Suspensão dos decretos de saneamento emitidos por Lula', '03/05/2023 20:37:16 - PDL  Nº 98/2023 - SUBSTITUTIVO OFERECIDO PELO RELATOR')
+    ('Suspensão dos decretos de saneamento emitidos por Lula', '03/05/2023 20:37:16 - PDL  Nº 98/2023 - SUBSTITUTIVO OFERECIDO PELO RELATOR'),
+    ('Fundos offshore e exclusivos', '25/10/2023 20:33:29 - PL   Nº 4173/2023 - SUBEMENDA SUBSTITUTIVA')
 ]
 
 primeiros_valores = [tupla[0] for tupla in projetos_principais]
