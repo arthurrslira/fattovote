@@ -67,8 +67,9 @@ projetos_principais = [
     ('MP dos Ministérios', 'MPV 1154-2023'),
     ('Lei Geral do Esporte', 'PL 1825-2022'),
     ('PL do Carf', 'PLP 2384-2023'),
-    ('Marco Temporal', 'PL 2903-2023')
-]
+    ('Marco Temporal', 'PL 2903-2023'),
+    ('PEC 45-2019 (1º TURNO)', 'Reforma tributária (1º Turno)'),
+    ('PEC 45-2019 (2º TURNO)', 'Reforma tributária (2º Turno)')]
 
 primeiros_valores = [tupla[0] for tupla in projetos_principais]
 
