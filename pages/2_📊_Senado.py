@@ -70,7 +70,7 @@ projetos_principais = [
     ('Marco Temporal', 'PL 2903-2023'),
     ('Reforma tributária (1º Turno)', 'PEC 45-2019 (1º TURNO)'),
     ('Reforma tributária (2º Turno)', 'PEC 45-2019 (1º TURNO)'),
-    ('PEC do STF (1º Turno)', 'PEC 8/2021 (1º TURNO)')]
+    ('PEC do STF', 'PEC 8/2021 (1º TURNO)')]
 
 primeiros_valores = [tupla[0] for tupla in projetos_principais]
 
