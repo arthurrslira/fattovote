@@ -70,7 +70,12 @@ projetos_principais = [
     ('Marco Temporal', 'PL 2903-2023'),
     ('Reforma tributária (1º Turno)', 'PEC 45-2019 (1º TURNO)'),
     ('Reforma tributária (2º Turno)', 'PEC 45-2019 (1º TURNO)'),
-    ('PEC do STF', 'PEC 8/2021 (1º TURNO)')]
+    ('PEC do STF', 'PEC 8/2021 (1º TURNO)'),
+    ('Saidinha', 'PL 2253/2022'),
+    ('Veto Saidinha (SIM mantém o veto)', 'Veto 8/2024'),
+    ('Criminalização do Porte de Drogas', 'PEC 45/2023'),
+    ('Novo DPVAT', 'PLP 233/2023'),
+    ('Suspensão da dívida do RS', 'PLP 85/2024')]
 
 primeiros_valores = [tupla[0] for tupla in projetos_principais]
 
