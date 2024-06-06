@@ -75,7 +75,7 @@ projetos_principais = [
     ('Suspensão dos decretos de saneamento emitidos por Lula', '03/05/2023 20:37:16 - PDL  Nº 98/2023 - SUBSTITUTIVO OFERECIDO PELO RELATOR'),
     ('Fundos offshore e exclusivos', '25/10/2023 20:33:29 - PL   Nº 4173/2023 - SUBEMENDA SUBSTITUTIVA'),
     ('Suspensão da Dívida do RS', '14/05/2024 23:00:20 - PLP  Nº 85/2024 - SUBSTITUTIVO OFERECIDO'),
-    ('Saidinha', '28/05/2024 18:50:10 - VETO Nº 8/2024 - DISPOSITIVOS 1 E 2 (SAÍDA TEMPORÁRIA)')
+    ('Veto Saidinha (SIM mantém o veto)', '28/05/2024 18:50:10 - VETO Nº 8/2024 - DISPOSITIVOS 1 E 2 (SAÍDA TEMPORÁRIA)')
 ]
 
 primeiros_valores = [tupla[0] for tupla in projetos_principais]
