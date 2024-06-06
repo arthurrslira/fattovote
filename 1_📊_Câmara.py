@@ -43,7 +43,7 @@ authenticator = stauth.Authenticate(
 #st.sidebar.write(f'Bem-vindo *{name}*')
 #authenticator.logout('Logout', 'sidebar')
 
-df = pd.read_excel('camara_deputados_votacoes_nominais_2023.xlsx', header=[0, 1])
+df = pd.read_excel('camara_deputados_votacoe.xlsx', header=[0, 1])
 parlamentares = sorted(df['Votação', 'Parlamentar'].unique())
 partidos_unicos = sorted(df['Unnamed: 0_level_0', 'Partido'].unique())
 
@@ -73,7 +73,9 @@ projetos_principais = [
     ('Marco Temporal das Terras Indígenas', '30/05/2023 20:02:55 - PL   Nº 490/2007 - SUBEMENDA SUBSTITUTIVA'),
     ('MP dos Ministérios', '31/05/2023 22:43:56 - MPV  Nº 1154/2023 - PARECER DA C.M P/ ATEND. DOS PRESSUPOSTOS CONSTITUCIONAIS...'),
     ('Suspensão dos decretos de saneamento emitidos por Lula', '03/05/2023 20:37:16 - PDL  Nº 98/2023 - SUBSTITUTIVO OFERECIDO PELO RELATOR'),
-    ('Fundos offshore e exclusivos', '25/10/2023 20:33:29 - PL   Nº 4173/2023 - SUBEMENDA SUBSTITUTIVA')
+    ('Fundos offshore e exclusivos', '25/10/2023 20:33:29 - PL   Nº 4173/2023 - SUBEMENDA SUBSTITUTIVA'),
+    ('Suspensão da Dívida do RS', '14/05/2024 23:00:20 - PLP  Nº 85/2024 - SUBSTITUTIVO OFERECIDO'),
+    ('Saidinha', '28/05/2024 18:50:10 - VETO Nº 8/2024 - DISPOSITIVOS 1 E 2 (SAÍDA TEMPORÁRIA)')
 ]
 
 primeiros_valores = [tupla[0] for tupla in projetos_principais]
