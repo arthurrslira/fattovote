@@ -6,6 +6,13 @@ import streamlit.components.v1 as components
 import yaml 
 from yaml.loader import SafeLoader
 
+st.set_page_config(
+     page_title="FattoVote",
+     page_icon="https://i.ibb.co/x1Y9wJh/Monograma-Verde.png",
+     layout="wide",
+     initial_sidebar_state="expanded",
+)
+
 # Função para carregar os dados com cache
 @st.cache_data
 def load_data(file):
@@ -23,14 +30,6 @@ def obter_url_imagem(nome_parlamentar, df_img):
 # Carregar dados
 df_img = load_data('deputados_imagens.xlsx')
 df = load_data('camara_deputados_votacoe.xlsx')
-
-st.set_page_config(
-     page_title="FattoVote",
-     page_icon="https://i.ibb.co/x1Y9wJh/Monograma-Verde.png",
-     layout="wide",
-     initial_sidebar_state="expanded",
-)
-
 
 parlamentares = sorted(df['Votação', 'Parlamentar'].unique())
 partidos_unicos = sorted(df['Unnamed: 0_level_0', 'Partido'].unique())
