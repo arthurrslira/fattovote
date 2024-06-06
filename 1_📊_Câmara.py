@@ -31,26 +31,6 @@ st.set_page_config(
      initial_sidebar_state="expanded",
 )
 
-# -- AUTHENTICATOR --
-
-with open('config.yaml') as file:
-    config = yaml.load(file, Loader=SafeLoader)
-
-authenticator = stauth.Authenticate(
-    config['credentials'],
-    config['cookie']['name'],
-    config['cookie']['key'],
-    config['cookie']['expiry_days'],
-    config['preauthorized']
-)
-
-# Página de Login
-
-#name, authentication_status, username = authenticator.login('Login', 'main')
-
-#if authentication_status:
-#st.sidebar.write(f'Bem-vindo *{name}*')
-#authenticator.logout('Logout', 'sidebar')
 
 parlamentares = sorted(df['Votação', 'Parlamentar'].unique())
 partidos_unicos = sorted(df['Unnamed: 0_level_0', 'Partido'].unique())
