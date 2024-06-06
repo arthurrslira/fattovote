@@ -6,15 +6,6 @@ import streamlit.components.v1 as components
 import yaml 
 from yaml.loader import SafeLoader
 
-df_img = pd.read_excel('deputados_imagens.xlsx')
-
-def obter_url_imagem(nome_parlamentar):
-    deputado_filtrado = df_img[df_img['Nome do Deputado'] == nome_parlamentar]
-    if not deputado_filtrado.empty:
-        return deputado_filtrado['Link da Imagem'].iloc[0]
-    else:
-        return 'https://www.camara.leg.br/tema/assets/images/foto-deputado-sem-foto-peq.png'
-
 st.set_page_config(
      page_title="FattoVote",
      page_icon="https://i.ibb.co/x1Y9wJh/Monograma-Verde.png",
@@ -22,8 +13,24 @@ st.set_page_config(
      initial_sidebar_state="expanded",
 )
 
-# -- AUTHENTICATOR --
+@st.cache_data
+def carregar_dados():
+    df_img = pd.read_excel('deputados_imagens.xlsx')
+    df = pd.read_excel('camara_deputados_votacoe.xlsx', header=[0, 1])
+    return df_img, df
 
+df_img, df = carregar_dados()
+
+@st.cache_data
+def criar_dicionario_imagens(df_img):
+    return dict(zip(df_img['Nome do Deputado'], df_img['Link da Imagem']))
+
+dicionario_imagens = criar_dicionario_imagens(df_img)
+
+def obter_url_imagem(nome_parlamentar):
+    return dicionario_imagens.get(nome_parlamentar, 'https://www.camara.leg.br/tema/assets/images/foto-deputado-sem-foto-peq.png')
+
+# -- AUTHENTICATOR --
 with open('config.yaml') as file:
     config = yaml.load(file, Loader=SafeLoader)
 
@@ -36,17 +43,13 @@ authenticator = stauth.Authenticate(
 )
 
 # Página de Login
-
 #name, authentication_status, username = authenticator.login('Login', 'main')
-
 #if authentication_status:
-#st.sidebar.write(f'Bem-vindo *{name}*')
-#authenticator.logout('Logout', 'sidebar')
+#    st.sidebar.write(f'Bem-vindo *{name}*')
+#    authenticator.logout('Logout', 'sidebar')
 
-df = pd.read_excel('camara_deputados_votacoe.xlsx', header=[0, 1])
 parlamentares = sorted(df['Votação', 'Parlamentar'].unique())
 partidos_unicos = sorted(df['Unnamed: 0_level_0', 'Partido'].unique())
-
 
 imagem = "marca_fatto.png"
 st.sidebar.image(imagem, use_column_width=False, width=300)
@@ -55,15 +58,15 @@ qrcode = "qrcode.png"
 st.sidebar.image(qrcode, use_column_width=False, width=300)
 
 st.markdown(
-"<h2 style='text-align: center; background-color: #307c5c; color: white; padding: 16px;'>Votações Nominais na Câmara dos Deputados - 2023/2024</h2>",
-unsafe_allow_html=True
+    "<h2 style='text-align: center; background-color: #307c5c; color: white; padding: 16px;'>Votações Nominais na Câmara dos Deputados - 2023/2024</h2>",
+    unsafe_allow_html=True
 )
 
 projetos = df.columns.get_level_values(0)[2:].unique()
 df_projetos = pd.DataFrame(projetos, columns=['projeto'])
-
-df_projetos['projeto_data'] = df_projetos['projeto'].apply(lambda x: x.split("-", 1)[0].strip())
-df_projetos['projeto_nome'] = df_projetos['projeto'].apply(lambda x: x.split("-", 1)[1].strip())
+df_projetos[['projeto_data', 'projeto_nome']] = df_projetos['projeto'].str.split("-", n=1, expand=True)
+df_projetos['projeto_data'] = df_projetos['projeto_data'].str.strip()
+df_projetos['projeto_nome'] = df_projetos['projeto_nome'].str.strip()
 
 projetos_principais = [
     ('Reforma Tributária - 1º Turno', '06/07/2023 21:00:48 - PEC  Nº 45/2019 - SUBSTITUTIVO OFERECIDO PELA COMISSÃO ESPECIAL'),
@@ -82,21 +85,17 @@ projetos_principais = [
 primeiros_valores = [tupla[0] for tupla in projetos_principais]
 
 st.subheader('Projeto:')
-
 projeto_selecionado2 = st.selectbox('Selecione o projeto', primeiros_valores)
 
 st.subheader('Partidos:')
-
 if st.checkbox("Todos", value=True):
     partidos_selecionados = partidos_unicos
 else:
     partidos_selecionados = st.multiselect('Selecione os partidos', partidos_unicos, default=partidos_unicos)
 
 st.subheader('Parlamentares:')
-
 parlamentares_selecionados = df.loc[df[('Unnamed: 0_level_0', 'Partido')].isin(partidos_selecionados), ('Votação', 'Parlamentar')].unique()
 selecionar_parlamentar = st.selectbox('Selecione um parlamentar', ['Todos'] + sorted(parlamentares_selecionados))
-parlamentar_selecionado = [selecionar_parlamentar]
 
 if selecionar_parlamentar == 'Todos':
     parlamentar_selecionado = parlamentares
@@ -119,9 +118,7 @@ if not parlamentar_selecionado:
     st.markdown("Nenhum parlamentar encontrado.")
 
 df_filtrado.columns = ["Partido", "Parlamentar", "Voto", "Orientação"]
-
 df_filtrado = df_filtrado[df_filtrado['Voto'] != '-']
-
 df_filtrado["Imagem"] = df_filtrado["Parlamentar"].apply(obter_url_imagem)
 df_filtrado = df_filtrado[["Imagem", "Parlamentar", "Partido", "Voto", "Orientação"]]
 st.markdown(projeto_selecionado)
@@ -136,18 +133,14 @@ st.dataframe(
 )
 
 grouped_data = df_filtrado.groupby(["Partido", "Voto"]).size().unstack(fill_value=0)
-
 party_sums = grouped_data.sum(axis=1)
 sorted_parties = party_sums.sort_values(ascending=False).index
-
 sorted_data = grouped_data.loc[sorted_parties]
-
-percentages = sorted_data.apply(lambda row: (row / row.sum())*100, axis=1).round(2)
+percentages = sorted_data.apply(lambda row: (row / row.sum()) * 100, axis=1).round(2)
 
 df_long = percentages.reset_index().melt(id_vars='Partido', var_name='Voto', value_name='Percentual')
-
 colors = alt.Scale(domain=['Sim', 'Não', 'Não votou', 'Abstenção'],
-                range=['#90EE90', '#FFA07A', '#D3D3D3', '#D2B48C'])
+                   range=['#90EE90', '#FFA07A', '#D3D3D3', '#D2B48C'])
 
 chart = alt.Chart(df_long).mark_bar().encode(
     x='Partido',
