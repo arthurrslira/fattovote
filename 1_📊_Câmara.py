@@ -55,7 +55,7 @@ qrcode = "qrcode.png"
 st.sidebar.image(qrcode, use_column_width=False, width=300)
 
 st.markdown(
-"<h2 style='text-align: center; background-color: #307c5c; color: white; padding: 16px;'>Votações Nominais na Câmara dos Deputados - 2023</h2>",
+"<h2 style='text-align: center; background-color: #307c5c; color: white; padding: 16px;'>Votações Nominais na Câmara dos Deputados - 2023/2024</h2>",
 unsafe_allow_html=True
 )
 
